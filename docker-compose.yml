@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  mysql.db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=words_quiz
+      - MYSQL_TCP_PORT=3316
+      - TZ=Europe/Warsaw
+    ports:
+      - '3316:3316'
+    tmpfs:
+      - /var/lib/mysql/:rw,noexec,nosuid,size=600m
+      - /tmp/:rw,noexec,nosuid,size=50m
